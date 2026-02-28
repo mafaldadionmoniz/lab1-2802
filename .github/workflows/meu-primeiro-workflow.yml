@@ -1,0 +1,11 @@
+name: Saudação GitHub
+on: 
+  push:
+  pull_request:
+jobs:
+  boas-vindas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dizer Olá
+        run: echo "Iniciando Automação!"
