@@ -1,0 +1,19 @@
+name: Testar Minhas Ações
+on: [push]
+
+jobs:
+  meu-job:
+    runs-on: ubuntu-latest # Docker requer Linux
+    steps:
+      - uses: actions/checkout@v4 # Necessário para aceder aos ficheiros locais
+
+      - name: Testar JS
+        uses: ./.github/actions/minha-acao-js
+        with:
+          quem: 'Candidato GH-200'
+
+      - name: Testar Docker
+        uses: ./.github/actions/minha-acao-docker
+
+      - name: Testar Composite
+        uses: ./.github/actions/minha-acao-composite
