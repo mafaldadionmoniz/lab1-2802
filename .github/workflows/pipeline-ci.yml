@@ -1,0 +1,38 @@
+name: CI Pipeline Elaborada
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**' # Otimização: Só dispara se o código na pasta src mudar
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Permite execução manual para testes rápidos
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Configurar Ambiente
+        run: echo "A preparar build para o ambiente ${{ vars.AMBIENTE_ALVO }}"
+  testes:
+    needs: build # Garante que só testa se a build passar
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest] # Automação multiplataforma
+        versao_node: [7, 8]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Executar Testes
+        run: echo "A testar no ${{ matrix.os }} com Node.js ${{ matrix.versao_node }}"
+  deploy:
+    needs: testes
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' # Condicional: Só faz deploy em pushes reais
+    steps:
+      - name: Autenticação Segura
+        env:
+          CHAVE: ${{ secrets.API_KEY_PRODUCAO }}
+        run: |
+          echo "A realizar deploy seguro..."
+          # O GitHub irá mascarar o valor da chave nos logs como ***
