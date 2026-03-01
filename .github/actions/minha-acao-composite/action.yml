@@ -1,1 +1,19 @@
+name: 'Minha Ação Composta'
+description: 'Agrupa múltiplos passos de shell num único comando'
+inputs:
+  objetivo:
+    description: 'O que estamos a testar'
+    required: false
+    default: 'Ação Composta'
+runs:
+  using: 'composite' # Obrigatório para este tipo de ação
+  steps:
+    - name: Passo de Preparação
+      run: echo "Iniciando a execução da ${{ inputs.objetivo }}..."
+      shell: bash # Obrigatório definir o shell em ações compostas
 
+    - name: Passo de Execução
+      run: |
+        echo "Esta ação permite simplificar workflows complexos."
+        echo "Data de execução: $(date)"
+      shell: bash
