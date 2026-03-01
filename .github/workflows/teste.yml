@@ -5,7 +5,8 @@ jobs:
   meu-job:
     runs-on: ubuntu-latest # Docker requer Linux
     steps:
-      - uses: actions/checkout@v4 # Necessário para aceder aos ficheiros locais
+      - name: Checkout do código
+        uses: actions/checkout@v4 # Necessário para aceder aos ficheiros locais
 
       - name: Testar JS
         uses: ./.github/actions/minha-acao-js
