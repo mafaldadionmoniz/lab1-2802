@@ -1,1 +1,5 @@
-
+name: 'Minha Ação Docker'
+description: 'Executa uma tarefa isolada dentro de um contentor'
+runs:
+  using: 'docker'
+  image: 'Dockerfile' # Indica que o GitHub deve construir a imagem a partir do Dockerfile local
