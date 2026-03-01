@@ -1,0 +1,17 @@
+name: Lab Matrix Build
+on: [push]
+
+jobs:
+  testes-multiplataforma:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest] # O job correrá duas vezes em paralelo [4]
+        node-version: [3, 6] # Isto criará 4 combinações (2 OS x 2 Node)
+    runs-on: ${{ matrix.os }} # Usa a variável da matriz
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm test
