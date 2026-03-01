@@ -1,0 +1,12 @@
+name: 'Gerador de ID'
+description: 'Gera um ID único baseado na data e disponibiliza como output'
+outputs:
+  id_gerado:
+    description: 'O ID único gerado'
+    value: ${{ steps.passo-logica.outputs.novo_id }} # Mapeia o output interno para o externo
+runs:
+  using: 'composite'
+  steps:
+    - id: passo-logica
+      run: echo "novo_id=$(date +%s)" >> $GITHUB_OUTPUT # Sintaxe moderna para definir outputs
+      shell: bash
