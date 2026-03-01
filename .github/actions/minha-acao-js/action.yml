@@ -1,1 +1,13 @@
-
+name: 'Minha Ação JS'
+description: 'Uma ação simples que saúda o utilizador para testar o workflow'
+inputs:
+  quem:
+    description: 'O nome da pessoa a saudar'
+    required: true
+    default: 'Mundo'
+outputs:
+  resultado:
+    description: 'A saudação final gerada'
+runs:
+  using: 'node20' # Define o motor de execução para Node.js 20
+  main: 'index.js' # Aponta para o ficheiro com a lógica da ação
