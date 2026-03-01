@@ -1,0 +1,16 @@
+name: Teste Lab 2 - Outputs
+on: [push]
+
+jobs:
+  processamento:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4 # Obrigatório para ler a ação local [3]
+
+      - name: Chamar Gerador de ID
+        id: acao_geradora # O ID é crucial para referenciar o output depois
+        uses: ./.github/actions/gerador-id
+
+      - name: Utilizar o ID Recebido
+        run: echo "O ID gerado pela ação foi ${{ steps.acao_geradora.outputs.id_gerado }}"
