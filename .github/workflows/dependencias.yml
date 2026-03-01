@@ -1,0 +1,14 @@
+name: Lab Dependencias
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "A compilar a aplicação..."
+
+  testes:
+    needs: build # Este job só inicia se 'build' passar [5]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "A executar testes unitários..."
