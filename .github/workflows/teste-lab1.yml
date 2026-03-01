@@ -1,0 +1,15 @@
+name: Teste Lab 1 - Inputs
+on: [push]
+
+jobs:
+  saudacao:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4 # Passo obrigatório para ações locais
+
+      - name: Executar Saudador Pro
+        uses: ./.github/actions/saudador-pro
+        with:
+          nome_utilizador: 'Carlos'
+          entusiasmo: '!!!'
