@@ -1,0 +1,14 @@
+name: 'Saudador Pro'
+description: 'Saúda um utilizador com um nível de entusiasmo personalizável'
+inputs:
+  nome_utilizador:
+    description: 'Nome da pessoa a saudar'
+    required: true
+    default: 'Estudante GH-200'
+  entusiasmo:
+    description: 'Sinal de pontuação para a saudação'
+    required: false
+    default: '!'
+runs:
+  using: 'node20' # Define a versão do Node.js suportada
+  main: 'index.js'
